@@ -55,10 +55,10 @@ public class BankTest {
         int balanceFirstBeforeTransfer = dashboardPage.getCardBalance(0);
         int balanceSecondBeforeTransfer = dashboardPage.getCardBalance(1);
         var transferMoneyPage = dashboardPage.cardRefill(0);
-        int amount = 12000;
+        int amount = 22000;
         transferMoneyPage.transferMoney (amount, DataHelper.getSecondCardInfo().getCardNumber());
-        Assertions.assertEquals(balanceFirstBeforeTransfer + amount, dashboardPage.getCardBalance(0));
-        Assertions.assertEquals(balanceSecondBeforeTransfer - amount, dashboardPage.getCardBalance(1));
-
+        transferMoneyPage.shouldAppearErrorNotification();
+        Assertions.assertEquals(balanceFirstBeforeTransfer, dashboardPage.getCardBalance(0));
+        Assertions.assertEquals(balanceSecondBeforeTransfer, dashboardPage.getCardBalance(1));
     }
 }
