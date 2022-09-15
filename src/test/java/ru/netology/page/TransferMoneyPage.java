@@ -1,4 +1,4 @@
-package ru.netology;
+package ru.netology.page;
 
 import com.codeborne.selenide.SelenideElement;
 
@@ -24,6 +24,10 @@ public class TransferMoneyPage {
         cardNumberField.setValue(cardNumber);
         transferButton.click();
         return new TransferMoneyPage();
+    }
+
+    public void shouldAppearErrorNotification() {
+        errorNotification.shouldBe(visible);
     }
 
 }
